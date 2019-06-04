@@ -10,4 +10,8 @@ export class ShoppingListComponent {
     new Ingredient("banana", 10),
     new Ingredient("tomatos", 10)
   ];
+
+  addToShoppingList(data: Ingredient) {
+    this.ingredients.push(data);
+  }
 }
