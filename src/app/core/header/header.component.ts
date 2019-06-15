@@ -1,21 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "../shared/data.service";
-import { RecipeService } from "../shared/recipe.service";
-import { Recipe } from "../recipes/recipe.model";
-import { Response } from "@angular/http";
+import { Component } from "@angular/core";
+import { DataService } from "../../shared/data.service";
+import { RecipeService } from "../../shared/recipe.service";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.css"]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   constructor(
     private dataService: DataService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private authService: AuthService
   ) {}
 
-  ngOnInit() {}
   onSaveData() {
     this.dataService
       .postRecipes()
@@ -23,5 +22,8 @@ export class HeaderComponent implements OnInit {
   }
   onFetchData() {
     this.dataService.getRecipes();
+  }
+  onLogout() {
+    this.authService.logout();
   }
 }
